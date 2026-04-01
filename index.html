@@ -5,488 +5,462 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>DVA Auto — Автосервис Санкт-Петербург</title>
-
 <meta name="description" content="Автосервис DVA Auto в Санкт-Петербурге. Компьютерная диагностика, техническое обслуживание, ремонт подвески и тормозной системы. Гарантия и честные цены.">
-
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-body{
-font-family:'Montserrat',sans-serif;
-background:#0b0b0b;
-color:white;
-line-height:1.6;
-scroll-behavior:smooth;
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: #0b0b0b;
+    color: white;
+    line-height: 1.6;
+    scroll-behavior: smooth;
 }
 
-.container{
-width:90%;
-max-width:1200px;
-margin:auto;
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
 }
 
-header{
-position:fixed;
-width:100%;
-background:rgba(0,0,0,0.8);
-backdrop-filter:blur(6px);
-border-bottom:1px solid #222;
-z-index:1000;
+header {
+    position: fixed;
+    width: 100%;
+    background: rgba(0,0,0,0.8);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid #222;
+    z-index: 1000;
 }
 
-.nav{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:18px 0;
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 0;
 }
 
-.logo{
-font-size:26px;
-font-weight:700;
-letter-spacing:3px;
+.logo {
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: 3px;
 }
 
-.hero{
-height:100vh;
-display:flex;
-align-items:center;
-text-align:center;
-background:linear-gradient(180deg,#0b0b0b,#000);
+/* Изменено: добавлен фон с картинкой и затемнением */
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    background: linear-gradient(180deg, rgba(11, 11, 11, 0.7), rgba(0, 0, 0, 0.9)), 
+                url('https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
 }
 
-.hero h1{
-font-size:56px;
-margin-bottom:20px;
+.hero h1 {
+    font-size: 56px;
+    margin-bottom: 20px;
 }
 
-.hero p{
-color:#aaa;
-font-size:20px;
+.hero p {
+    color: #ccc;
+    font-size: 20px;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
 }
 
-.buttons{
-margin-top:35px;
+.buttons {
+    margin-top: 35px;
 }
 
-.btn{
-display:inline-block;
-padding:15px 32px;
-margin:10px;
-border-radius:8px;
-font-weight:600;
-text-decoration:none;
-transition:0.3s;
+.btn {
+    display: inline-block;
+    padding: 15px 32px;
+    margin: 10px;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.3s;
 }
 
-.btn-call{
-background:#ff5a00;
-color:white;
+.btn-call { background: #ff5a00; color: white; }
+.btn-call:hover { background: #ff7b2d; transform: scale(1.05); }
+.btn-tg { background: #229ED9; color: white; }
+.btn-tg:hover { transform: scale(1.05); }
+
+section { padding: 100px 0; }
+h2 { text-align: center; font-size: 40px; margin-bottom: 60px; }
+
+.services, .advantages {
+    display: grid;
+    gap: 30px;
 }
 
-.btn-call:hover{
-background:#ff7b2d;
-transform:scale(1.05);
+.services { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.advantages { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+
+.card, .adv {
+    background: #141414;
+    padding: 35px;
+    border-radius: 14px;
+    text-align: center;
+    transition: 0.4s;
+    opacity: 0;
+    transform: translateY(40px);
 }
 
-.btn-tg{
-background:#229ED9;
-color:white;
+.card.show, .adv.show { opacity: 1; transform: translateY(0); }
+.card:hover { transform: translateY(-8px); background: #1b1b1b; }
+
+.icon { font-size: 40px; margin-bottom: 15px; }
+.price { margin-top: 12px; color: #ff5a00; font-weight: 600; }
+
+/* Галерея: новый стиль для слайдера */
+.gallery-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
 }
 
-section{
-padding:100px 0;
+.gallery-slider {
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    white-space: nowrap;
+    width: 100%;
+    /* Прячем скроллбар */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+.gallery-slider::-webkit-scrollbar {
+    display: none;
 }
 
-h2{
-text-align:center;
-font-size:40px;
-margin-bottom:60px;
+.gallery-track {
+    display: flex;
+    gap: 20px;
 }
 
-.services{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-gap:30px;
+.gallery-track img {
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    transition: 0.3s;
+    flex-shrink: 0;
 }
 
-.card{
-background:#141414;
-padding:35px;
-border-radius:14px;
-text-align:center;
-transition:0.4s;
-opacity:0;
-transform:translateY(40px);
+.gallery-track img:hover { transform: scale(1.03); }
+
+.slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #ff5a00;
+    color: white;
+    border: none;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 10;
+    transition: 0.3s;
 }
 
-.card.show{
-opacity:1;
-transform:translateY(0);
+.slider-btn:hover { background: #ff7b2d; }
+.btn-prev { left: -20px; }
+.btn-next { right: -20px; }
+
+
+/* Отзывы: вертикальный слайдер и аватарки */
+.reviews { max-width: 800px; margin: auto; }
+
+.review-viewport {
+    height: 420px; /* Высота под 3 отзыва (зависит от контента) */
+    overflow: hidden;
+    position: relative;
+    mask-image: linear-gradient(to bottom, transparent, black 5%, black 95%, transparent);
+    -webkit-mask-image: linear-gradient(to bottom, transparent, black 5%, black 95%, transparent);
 }
 
-.card:hover{
-transform:translateY(-8px);
-background:#1b1b1b;
+.review-track {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    transition: transform 0.8s ease-in-out;
 }
 
-.icon{
-font-size:40px;
-margin-bottom:15px;
+.review {
+    background: #141414;
+    padding: 25px;
+    border-radius: 12px;
+    display: flex; /* Выравнивание аватара и текста */
+    align-items: flex-start;
+    gap: 20px;
+    text-align: left;
 }
 
-.price{
-margin-top:12px;
-color:#ff5a00;
-font-weight:600;
+.avatar {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
 }
 
-.advantages{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-gap:20px;
+.contacts { text-align: center; }
+.map { margin-top: 30px; border-radius: 10px; overflow: hidden; }
+iframe { width: 100%; height: 350px; border: 0; }
+
+.floating {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    z-index: 999;
 }
 
-.adv{
-background:#141414;
-padding:30px;
-border-radius:12px;
-text-align:center;
-opacity:0;
-transform:translateY(40px);
-transition:0.4s;
+.float-btn {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: white;
+    text-decoration: none;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
 }
+.phone { background: #ff5a00; }
+.tg { background: #229ED9; }
 
-.adv.show{
-opacity:1;
-transform:translateY(0);
+footer { text-align: center; padding: 35px; color: #777; border-top: 1px solid #222; }
+
+/* Адаптив для галереи на телефонах */
+@media (max-width: 768px) {
+    .btn-prev { left: -5px; }
+    .btn-next { right: -5px; }
 }
-
-.gallery{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:20px;
-}
-
-.gallery img{
-width:100%;
-border-radius:10px;
-transition:0.3s;
-}
-
-.gallery img:hover{
-transform:scale(1.05);
-}
-
-.reviews{
-max-width:800px;
-margin:auto;
-}
-
-.review{
-background:#141414;
-padding:25px;
-border-radius:12px;
-margin-bottom:20px;
-}
-
-.contacts{
-text-align:center;
-}
-
-.map{
-margin-top:30px;
-border-radius:10px;
-overflow:hidden;
-}
-
-iframe{
-width:100%;
-height:350px;
-border:0;
-}
-
-.floating{
-position:fixed;
-bottom:25px;
-right:25px;
-display:flex;
-flex-direction:column;
-gap:12px;
-}
-
-.float-btn{
-width:60px;
-height:60px;
-border-radius:50%;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:24px;
-color:white;
-text-decoration:none;
-box-shadow:0 0 10px rgba(0,0,0,0.5);
-}
-
-.phone{
-background:#ff5a00;
-}
-
-.tg{
-background:#229ED9;
-}
-
-footer{
-text-align:center;
-padding:35px;
-color:#777;
-border-top:1px solid #222;
-}
-
 </style>
 </head>
 
 <body>
 
 <header>
-<div class="container nav">
-<div class="logo">DVA AUTO</div>
-</div>
+    <div class="container nav">
+        <div class="logo">DVA AUTO</div>
+    </div>
 </header>
 
 <section class="hero">
-
-<div class="container">
-
-<h1>Автосервис в Санкт-Петербурге</h1>
-
-<p>
-Диагностика • ТО • Подвеска • Тормоза
-</p>
-
-<p>
-Костромской просп., 62<br>
-Ежедневно 09:00 – 20:00
-</p>
-
-<div class="buttons">
-<a class="btn btn-call" href="tel:+79811501717">Позвонить</a>
-<a class="btn btn-tg" href="https://t.me/+79811501717">Telegram</a>
-</div>
-
-</div>
-
+    <div class="container">
+        <h1>Автосервис в Санкт-Петербурге</h1>
+        <p>Диагностика • ТО • Подвеска • Тормоза</p>
+        <p>Костромской просп., 62<br>Ежедневно 09:00 – 20:00</p>
+        <div class="buttons">
+            <a class="btn btn-call" href="tel:+79811501717">Позвонить</a>
+            <a class="btn btn-tg" href="https://t.me/+79811501717">Telegram</a>
+        </div>
+    </div>
 </section>
 
 <section>
-
-<div class="container">
-
-<h2>Наши услуги</h2>
-
-<div class="services">
-
-<div class="card">
-<div class="icon">🖥️</div>
-<h3>Компьютерная диагностика</h3>
-<p>Проверка всех электронных систем автомобиля</p>
-<div class="price">2000 ₽</div>
-</div>
-
-<div class="card">
-<div class="icon">🔧</div>
-<h3>Техническое обслуживание</h3>
-<p>Замена масла, фильтров и подбор расходников</p>
-<div class="price">2500 ₽</div>
-</div>
-
-<div class="card">
-<div class="icon">🚗</div>
-<h3>Ремонт подвески</h3>
-<p>Передняя и задняя подвеска</p>
-<div class="price">от 3500 ₽</div>
-</div>
-
-<div class="card">
-<div class="icon">🛑</div>
-<h3>Тормозная система</h3>
-<p>Замена колодок и тормозных дисков</p>
-<div class="price">3500 ₽ / ось</div>
-</div>
-
-</div>
-
-</div>
-
+    <div class="container">
+        <h2>Наши услуги</h2>
+        <div class="services">
+            <div class="card">
+                <div class="icon">🖥️</div>
+                <h3>Компьютерная диагностика</h3>
+                <p>Проверка всех электронных систем автомобиля</p>
+                <div class="price">2000 ₽</div>
+            </div>
+            <div class="card">
+                <div class="icon">🔧</div>
+                <h3>Техническое обслуживание</h3>
+                <p>Замена масла, фильтров и подбор расходников</p>
+                <div class="price">2500 ₽</div>
+            </div>
+            <div class="card">
+                <div class="icon">🚗</div>
+                <h3>Ремонт подвески</h3>
+                <p>Передняя и задняя подвеска</p>
+                <div class="price">от 3500 ₽</div>
+            </div>
+            <div class="card">
+                <div class="icon">🛑</div>
+                <h3>Тормозная система</h3>
+                <p>Замена колодок и тормозных дисков</p>
+                <div class="price">3500 ₽ / ось</div>
+            </div>
+        </div>
+    </div>
 </section>
 
 <section>
-
-<div class="container">
-
-<h2>Почему выбирают нас</h2>
-
-<div class="advantages">
-
-<div class="adv">Гарантия на работы</div>
-<div class="adv">Честная диагностика</div>
-<div class="adv">Предварительная запись</div>
-<div class="adv">Адекватные цены</div>
-<div class="adv">Быстрый ремонт</div>
-
-</div>
-
-</div>
-
+    <div class="container">
+        <h2>Почему выбирают нас</h2>
+        <div class="advantages">
+            <div class="adv">Гарантия на работы</div>
+            <div class="adv">Честная диагностика</div>
+            <div class="adv">Предварительная запись</div>
+            <div class="adv">Адекватные цены</div>
+            <div class="adv">Быстрый ремонт</div>
+        </div>
+    </div>
 </section>
 
 <section>
-
-<div class="container">
-
-<h2>Галерея сервиса</h2>
-
-<div class="gallery">
-
-<img src="images/service1.jpg">
-<img src="images/service2.jpg">
-<img src="images/service3.jpg">
-<img src="images/service4.jpg">
-
-</div>
-
-</div>
-
+    <div class="container">
+        <h2>Галерея сервиса</h2>
+        <div class="gallery-wrapper">
+            <button class="slider-btn btn-prev">❮</button>
+            <div class="gallery-slider">
+                <div class="gallery-track">
+                    <img src="https://images.unsplash.com/photo-1625047509168-a71c66946a2c?w=400&h=300&fit=crop" alt="Сервис 1">
+                    <img src="https://images.unsplash.com/photo-1632823462996-ea06f71d50c7?w=400&h=300&fit=crop" alt="Сервис 2">
+                    <img src="https://images.unsplash.com/photo-1503328427499-d92d1fa3afce?w=400&h=300&fit=crop" alt="Сервис 3">
+                    <img src="https://images.unsplash.com/photo-1530906622963-8a60586a49c7?w=400&h=300&fit=crop" alt="Сервис 4">
+                    <img src="https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=400&h=300&fit=crop" alt="Сервис 5">
+                    <img src="https://images.unsplash.com/photo-1493238792000-8113da705763?w=400&h=300&fit=crop" alt="Сервис 6">
+                </div>
+            </div>
+            <button class="slider-btn btn-next">❯</button>
+        </div>
+    </div>
 </section>
 
 <section>
-
-<div class="container reviews">
-
-<h2>Отзывы клиентов</h2>
-
-<div class="review-slider">
-
-<div class="review active">
-<img class="avatar" src="https://i.pravatar.cc/80?img=1">
-<div>
-<b>Владислав Гаврилин</b>
-<p>Помогли решить проблему с дверью автомобиля 2 января. Быстро разобрались и всё починили.</p>
-</div>
-</div>
-
-<div class="review">
-<img class="avatar" src="https://i.pravatar.cc/80?img=11">
-<div>
-<b>Константин Сухов</b>
-<p>Отличный сервис. Диагностика и ремонт на уровне.</p>
-</div>
-</div>
-
-<div class="review">
-<img class="avatar" src="https://i.pravatar.cc/80?img=3">
-<div>
-<b>Дмитрий А</b>
-<p>Сделали ремонт быстро и качественно. Цена адекватная.</p>
-</div>
-</div>
-
-<div class="review">
-<img class="avatar" src="https://i.pravatar.cc/80?img=12">
-<div>
-<b>Константин Чекан</b>
-<p>Отличное место, парни знают что делают, быстро и качественно нашли проблему.</p>
-</div>
-</div>
-
-<div class="review">
-<img class="avatar" src="https://i.pravatar.cc/80?img=5">
-<div>
-<b>Ирина Маркова</b>
-<p>Великолепный автосервис. Всё объясняют, работают на совесть. Рекомендую!</p>
-</div>
-</div>
-
-<div class="review">
-<img class="avatar" src="https://i.pravatar.cc/80?img=14">
-<div>
-<b>Виктория Н.</b>
-<p>Грамотные специалисты, современное оборудование и честные цены.</p>
-</div>
-</div>
-
-</div>
-
-</div>
-
+    <div class="container reviews">
+        <h2>Отзывы клиентов</h2>
+        
+        <div class="review-viewport">
+            <div class="review-track">
+                <div class="review">
+                    <img class="avatar" src="https://i.pravatar.cc/150?img=1" alt="Аватар">
+                    <div>
+                        <b>Владислав Гаврилин</b>
+                        <p>Помогли решить проблему с дверью автомобиля 2 января. Быстро разобрались и всё починили.</p>
+                    </div>
+                </div>
+                <div class="review">
+                    <img class="avatar" src="https://i.pravatar.cc/150?img=11" alt="Аватар">
+                    <div>
+                        <b>Константин Сухов</b>
+                        <p>Отличный сервис. Диагностика и ремонт на уровне.</p>
+                    </div>
+                </div>
+                <div class="review">
+                    <img class="avatar" src="https://i.pravatar.cc/150?img=3" alt="Аватар">
+                    <div>
+                        <b>Дмитрий А</b>
+                        <p>Сделали ремонт быстро и качественно. Цена адекватная.</p>
+                    </div>
+                </div>
+                <div class="review">
+                    <img class="avatar" src="https://i.pravatar.cc/150?img=12" alt="Аватар">
+                    <div>
+                        <b>Константин Чекан</b>
+                        <p>Отличное место, парни знают что делают, быстро и качественно нашли проблему.</p>
+                    </div>
+                </div>
+                <div class="review">
+                    <img class="avatar" src="https://i.pravatar.cc/150?img=5" alt="Аватар">
+                    <div>
+                        <b>Ирина Маркова</b>
+                        <p>Великолепный автосервис. Всё объясняют, работают на совесть. Рекомендую!</p>
+                    </div>
+                </div>
+                <div class="review">
+                    <img class="avatar" src="https://i.pravatar.cc/150?img=14" alt="Аватар">
+                    <div>
+                        <b>Виктория Н.</b>
+                        <p>Грамотные специалисты, современное оборудование и честные цены.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 
 <section>
-
-<div class="container contacts">
-
-<h2>Контакты</h2>
-
-<p>📍 Санкт-Петербург<br>Костромской просп., 62</p>
-
-<p>📞 +7 (981) 150-17-17</p>
-
-<p>Ежедневно 09:00 – 20:00</p>
-
-<div class="map">
-
-<iframe src="https://yandex.ru/map-widget/v1/?ll=30.313497%2C59.998214&mode=search&oid=15776196576&ol=biz&z=16"></iframe>
-
-</div>
-
-</div>
-
+    <div class="container contacts">
+        <h2>Контакты</h2>
+        <p>📍 Санкт-Петербург<br>Костромской просп., 62</p>
+        <p>📞 +7 (981) 150-17-17</p>
+        <p>Ежедневно 09:00 – 20:00</p>
+        <div class="map">
+            <iframe src="https://yandex.ru/map-widget/v1/?ll=30.313497%2C59.998214&mode=search&oid=15776196576&ol=biz&z=16"></iframe>
+        </div>
+    </div>
 </section>
 
 <div class="floating">
-<a class="float-btn phone" href="tel:+79811501717">📞</a>
-<a class="float-btn tg" href="https://t.me/+79811501717">✈</a>
+    <a class="float-btn phone" href="tel:+79811501717">📞</a>
+    <a class="float-btn tg" href="https://t.me/+79811501717">✈</a>
 </div>
 
 <footer>
-DVA Auto © 2026
+    DVA Auto © 2026
 </footer>
 
 <script>
+    // 1. Анимация появления блоков при скролле
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("show")
+            }
+        })
+    });
 
-const observer = new IntersectionObserver(entries=>{
-entries.forEach(entry=>{
-if(entry.isIntersecting){
-entry.target.classList.add("show")
-}
-})
-})
+    document.querySelectorAll(".card, .adv").forEach(el => {
+        observer.observe(el);
+    });
 
-document.querySelectorAll(".card,.adv").forEach(el=>{
-observer.observe(el)
-})
-const reviews=document.querySelectorAll(".review")
+    // 2. Логика вертикального слайдера отзывов
+    const reviewTrack = document.querySelector('.review-track');
+    const moveReviews = () => {
+        const firstReview = reviewTrack.children[0];
+        // Узнаем высоту первого отзыва + gap (20px)
+        const heightToMove = firstReview.offsetHeight + 20; 
+        
+        reviewTrack.style.transform = `translateY(-${heightToMove}px)`;
+        
+        setTimeout(() => {
+            reviewTrack.style.transition = 'none';
+            reviewTrack.appendChild(firstReview); // Переносим первый элемент в конец
+            reviewTrack.style.transform = 'translateY(0)';
+            
+            // Возвращаем анимацию для следующего шага
+            setTimeout(() => {
+                reviewTrack.style.transition = 'transform 0.8s ease-in-out';
+            }, 50);
+        }, 800); // Тайминг должен совпадать со временем transition
+    };
 
-let index=0
+    setInterval(moveReviews, 3500); // Каждые 3.5 секунды отзывы сдвигаются
 
-setInterval(()=>{
+    // 3. Логика горизонтальной галереи
+    const gallerySlider = document.querySelector('.gallery-slider');
+    const btnPrev = document.querySelector('.btn-prev');
+    const btnNext = document.querySelector('.btn-next');
 
-reviews[index].classList.remove("active")
+    // Шаг прокрутки: примерно одна картинка + gap
+    const scrollAmount = 320; 
 
-index=(index+1)%reviews.length
+    btnNext.addEventListener('click', () => {
+        gallerySlider.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    });
 
-reviews[index].classList.add("active")
-
-},4000)
-
-  
+    btnPrev.addEventListener('click', () => {
+        gallerySlider.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+    });
 </script>
 
 </body>
