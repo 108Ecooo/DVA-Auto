@@ -51,7 +51,7 @@ header {
     letter-spacing: 3px;
 }
 
-/* Изменено: добавлен фон с картинкой и затемнением */
+/* Главный экран */
 .hero {
     height: 100vh;
     display: flex;
@@ -94,6 +94,7 @@ header {
 section { padding: 100px 0; }
 h2 { text-align: center; font-size: 40px; margin-bottom: 60px; }
 
+/* Услуги и преимущества */
 .services, .advantages {
     display: grid;
     gap: 30px;
@@ -118,7 +119,7 @@ h2 { text-align: center; font-size: 40px; margin-bottom: 60px; }
 .icon { font-size: 40px; margin-bottom: 15px; }
 .price { margin-top: 12px; color: #ff5a00; font-weight: 600; }
 
-/* Галерея: новый стиль для слайдера */
+/* Галерея */
 .gallery-wrapper {
     position: relative;
     display: flex;
@@ -130,7 +131,6 @@ h2 { text-align: center; font-size: 40px; margin-bottom: 60px; }
     scroll-behavior: smooth;
     white-space: nowrap;
     width: 100%;
-    /* Прячем скроллбар */
     -ms-overflow-style: none;
     scrollbar-width: none;
 }
@@ -174,12 +174,11 @@ h2 { text-align: center; font-size: 40px; margin-bottom: 60px; }
 .btn-prev { left: -20px; }
 .btn-next { right: -20px; }
 
-
-/* Отзывы: вертикальный слайдер и аватарки */
+/* Отзывы */
 .reviews { max-width: 800px; margin: auto; }
 
 .review-viewport {
-    height: 420px; /* Высота под 3 отзыва (зависит от контента) */
+    height: 420px; 
     overflow: hidden;
     position: relative;
     mask-image: linear-gradient(to bottom, transparent, black 5%, black 95%, transparent);
@@ -197,7 +196,7 @@ h2 { text-align: center; font-size: 40px; margin-bottom: 60px; }
     background: #141414;
     padding: 25px;
     border-radius: 12px;
-    display: flex; /* Выравнивание аватара и текста */
+    display: flex;
     align-items: flex-start;
     gap: 20px;
     text-align: left;
@@ -211,6 +210,7 @@ h2 { text-align: center; font-size: 40px; margin-bottom: 60px; }
     flex-shrink: 0;
 }
 
+/* Контакты и подвал */
 .contacts { text-align: center; }
 .map { margin-top: 30px; border-radius: 10px; overflow: hidden; }
 iframe { width: 100%; height: 350px; border: 0; }
@@ -298,6 +298,31 @@ footer { text-align: center; padding: 35px; color: #777; border-top: 1px solid #
                 <p>Замена колодок и тормозных дисков</p>
                 <div class="price">3500 ₽ / ось</div>
             </div>
+
+            <div class="card">
+                <div class="icon">⚡</div>
+                <h3>Автоэлектрика</h3>
+                <p>Комплексная диагностика и ремонт электрооборудования</p>
+                <div class="price">5000 ₽</div>
+            </div>
+            <div class="card">
+                <div class="icon">⚙️</div>
+                <h3>Установка свап-комплектов</h3>
+                <p>Профессиональная замена агрегатов и узлов</p>
+                <div class="price">5000 ₽</div>
+            </div>
+            <div class="card">
+                <div class="icon">💎</div>
+                <h3>Восстановление и реставрация</h3>
+                <p>Возвращаем автомобилям заводское состояние</p>
+                <div class="price">5000 ₽</div>
+            </div>
+            <div class="card">
+                <div class="icon">🚘</div>
+                <h3>Ремонт Мерседесов</h3>
+                <p>Специализированное обслуживание автомобилей Mercedes-Benz</p>
+                <div class="price">5000 ₽</div>
+            </div>
         </div>
     </div>
 </section>
@@ -322,12 +347,26 @@ footer { text-align: center; padding: 35px; color: #777; border-top: 1px solid #
             <button class="slider-btn btn-prev">❮</button>
             <div class="gallery-slider">
                 <div class="gallery-track">
-                    <img src="https://images.unsplash.com/photo-1625047509168-a71c66946a2c?w=400&h=300&fit=crop" alt="Сервис 1">
-                    <img src="https://images.unsplash.com/photo-1632823462996-ea06f71d50c7?w=400&h=300&fit=crop" alt="Сервис 2">
-                    <img src="https://images.unsplash.com/photo-1503328427499-d92d1fa3afce?w=400&h=300&fit=crop" alt="Сервис 3">
-                    <img src="https://images.unsplash.com/photo-1530906622963-8a60586a49c7?w=400&h=300&fit=crop" alt="Сервис 4">
-                    <img src="https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=400&h=300&fit=crop" alt="Сервис 5">
-                    <img src="https://images.unsplash.com/photo-1493238792000-8113da705763?w=400&h=300&fit=crop" alt="Сервис 6">
+                    <img src="image/service1.jpg" alt="Фото сервиса 1">
+                    <img src="image/service2.jpg" alt="Фото сервиса 2">
+                    <img src="image/service3.jpg" alt="Фото сервиса 3">
+                    <img src="image/service4.jpg" alt="Фото сервиса 4">
+                    <img src="image/service5.jpg" alt="Фото сервиса 5">
+                    <img src="image/service6.jpg" alt="Фото сервиса 6">
+                    <img src="image/service7.jpg" alt="Фото сервиса 7">
+                    <img src="image/service8.jpg" alt="Фото сервиса 8">
+                    <img src="image/service9.jpg" alt="Фото сервиса 9">
+                    <img src="image/service10.jpg" alt="Фото сервиса 10">
+                    <img src="image/service11.jpg" alt="Фото сервиса 11">
+                    <img src="image/service12.jpg" alt="Фото сервиса 12">
+                    <img src="image/service13.jpg" alt="Фото сервиса 13">
+                    <img src="image/service14.jpg" alt="Фото сервиса 14">
+                    <img src="image/service15.jpg" alt="Фото сервиса 15">
+                    <img src="image/service16.jpg" alt="Фото сервиса 16">
+                    <img src="image/service17.jpg" alt="Фото сервиса 17">
+                    <img src="image/service18.jpg" alt="Фото сервиса 18">
+                    <img src="image/service19.jpg" alt="Фото сервиса 19">
+                    <img src="image/service20.jpg" alt="Фото сервиса 20">
                 </div>
             </div>
             <button class="slider-btn btn-next">❯</button>
@@ -410,7 +449,7 @@ footer { text-align: center; padding: 35px; color: #777; border-top: 1px solid #
 </footer>
 
 <script>
-    // 1. Анимация появления блоков при скролле
+    // Анимация появления блоков при скролле
     const observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -423,35 +462,32 @@ footer { text-align: center; padding: 35px; color: #777; border-top: 1px solid #
         observer.observe(el);
     });
 
-    // 2. Логика вертикального слайдера отзывов
+    // Вертикальный слайдер отзывов
     const reviewTrack = document.querySelector('.review-track');
     const moveReviews = () => {
         const firstReview = reviewTrack.children[0];
-        // Узнаем высоту первого отзыва + gap (20px)
         const heightToMove = firstReview.offsetHeight + 20; 
         
         reviewTrack.style.transform = `translateY(-${heightToMove}px)`;
         
         setTimeout(() => {
             reviewTrack.style.transition = 'none';
-            reviewTrack.appendChild(firstReview); // Переносим первый элемент в конец
+            reviewTrack.appendChild(firstReview); 
             reviewTrack.style.transform = 'translateY(0)';
             
-            // Возвращаем анимацию для следующего шага
             setTimeout(() => {
                 reviewTrack.style.transition = 'transform 0.8s ease-in-out';
             }, 50);
-        }, 800); // Тайминг должен совпадать со временем transition
+        }, 800); 
     };
 
-    setInterval(moveReviews, 3500); // Каждые 3.5 секунды отзывы сдвигаются
+    setInterval(moveReviews, 3500); 
 
-    // 3. Логика горизонтальной галереи
+    // Горизонтальная галерея
     const gallerySlider = document.querySelector('.gallery-slider');
     const btnPrev = document.querySelector('.btn-prev');
     const btnNext = document.querySelector('.btn-next');
 
-    // Шаг прокрутки: примерно одна картинка + gap
     const scrollAmount = 320; 
 
     btnNext.addEventListener('click', () => {
