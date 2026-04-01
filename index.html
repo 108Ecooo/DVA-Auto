@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>DVA Auto — Автосервис Санкт-Петербург</title>
+
+<meta name="description" content="Автосервис DVA Auto в Санкт-Петербурге. Компьютерная диагностика, техническое обслуживание, ремонт подвески и тормозной системы. Гарантия и честные цены.">
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:'Montserrat',sans-serif;
+background:#0b0b0b;
+color:white;
+line-height:1.6;
+scroll-behavior:smooth;
+}
+
+.container{
+width:90%;
+max-width:1200px;
+margin:auto;
+}
+
+header{
+position:fixed;
+width:100%;
+background:rgba(0,0,0,0.8);
+backdrop-filter:blur(6px);
+border-bottom:1px solid #222;
+z-index:1000;
+}
+
+.nav{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:18px 0;
+}
+
+.logo{
+font-size:26px;
+font-weight:700;
+letter-spacing:3px;
+}
+
+.hero{
+height:100vh;
+display:flex;
+align-items:center;
+text-align:center;
+background:linear-gradient(180deg,#0b0b0b,#000);
+}
+
+.hero h1{
+font-size:56px;
+margin-bottom:20px;
+}
+
+.hero p{
+color:#aaa;
+font-size:20px;
+}
+
+.buttons{
+margin-top:35px;
+}
+
+.btn{
+display:inline-block;
+padding:15px 32px;
+margin:10px;
+border-radius:8px;
+font-weight:600;
+text-decoration:none;
+transition:0.3s;
+}
+
+.btn-call{
+background:#ff5a00;
+color:white;
+}
+
+.btn-call:hover{
+background:#ff7b2d;
+transform:scale(1.05);
+}
+
+.btn-tg{
+background:#229ED9;
+color:white;
+}
+
+section{
+padding:100px 0;
+}
+
+h2{
+text-align:center;
+font-size:40px;
+margin-bottom:60px;
+}
+
+.services{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:30px;
+}
+
+.card{
+background:#141414;
+padding:35px;
+border-radius:14px;
+text-align:center;
+transition:0.4s;
+opacity:0;
+transform:translateY(40px);
+}
+
+.card.show{
+opacity:1;
+transform:translateY(0);
+}
+
+.card:hover{
+transform:translateY(-8px);
+background:#1b1b1b;
+}
+
+.icon{
+font-size:40px;
+margin-bottom:15px;
+}
+
+.price{
+margin-top:12px;
+color:#ff5a00;
+font-weight:600;
+}
+
+.advantages{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:20px;
+}
+
+.adv{
+background:#141414;
+padding:30px;
+border-radius:12px;
+text-align:center;
+opacity:0;
+transform:translateY(40px);
+transition:0.4s;
+}
+
+.adv.show{
+opacity:1;
+transform:translateY(0);
+}
+
+.gallery{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+}
+
+.gallery img{
+width:100%;
+border-radius:10px;
+transition:0.3s;
+}
+
+.gallery img:hover{
+transform:scale(1.05);
+}
+
+.reviews{
+max-width:800px;
+margin:auto;
+}
+
+.review{
+background:#141414;
+padding:25px;
+border-radius:12px;
+margin-bottom:20px;
+}
+
+.contacts{
+text-align:center;
+}
+
+.map{
+margin-top:30px;
+border-radius:10px;
+overflow:hidden;
+}
+
+iframe{
+width:100%;
+height:350px;
+border:0;
+}
+
+.floating{
+position:fixed;
+bottom:25px;
+right:25px;
+display:flex;
+flex-direction:column;
+gap:12px;
+}
+
+.float-btn{
+width:60px;
+height:60px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:24px;
+color:white;
+text-decoration:none;
+box-shadow:0 0 10px rgba(0,0,0,0.5);
+}
+
+.phone{
+background:#ff5a00;
+}
+
+.tg{
+background:#229ED9;
+}
+
+footer{
+text-align:center;
+padding:35px;
+color:#777;
+border-top:1px solid #222;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="container nav">
+<div class="logo">DVA AUTO</div>
+</div>
+</header>
+
+<section class="hero">
+
+<div class="container">
+
+<h1>Автосервис в Санкт-Петербурге</h1>
+
+<p>
+Диагностика • ТО • Подвеска • Тормоза
+</p>
+
+<p>
+Костромской просп., 62<br>
+Ежедневно 09:00 – 20:00
+</p>
+
+<div class="buttons">
+<a class="btn btn-call" href="tel:+79811501717">Позвонить</a>
+<a class="btn btn-tg" href="https://t.me/+79811501717">Telegram</a>
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<div class="container">
+
+<h2>Наши услуги</h2>
+
+<div class="services">
+
+<div class="card">
+<div class="icon">🖥️</div>
+<h3>Компьютерная диагностика</h3>
+<p>Проверка всех электронных систем автомобиля</p>
+<div class="price">2000 ₽</div>
+</div>
+
+<div class="card">
+<div class="icon">🔧</div>
+<h3>Техническое обслуживание</h3>
+<p>Замена масла, фильтров и подбор расходников</p>
+<div class="price">2500 ₽</div>
+</div>
+
+<div class="card">
+<div class="icon">🚗</div>
+<h3>Ремонт подвески</h3>
+<p>Передняя и задняя подвеска</p>
+<div class="price">от 3500 ₽</div>
+</div>
+
+<div class="card">
+<div class="icon">🛑</div>
+<h3>Тормозная система</h3>
+<p>Замена колодок и тормозных дисков</p>
+<div class="price">3500 ₽ / ось</div>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<div class="container">
+
+<h2>Почему выбирают нас</h2>
+
+<div class="advantages">
+
+<div class="adv">Гарантия на работы</div>
+<div class="adv">Честная диагностика</div>
+<div class="adv">Предварительная запись</div>
+<div class="adv">Адекватные цены</div>
+<div class="adv">Быстрый ремонт</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<div class="container">
+
+<h2>Галерея сервиса</h2>
+
+<div class="gallery">
+
+<img src="https://images.unsplash.com/photo-1511919884226-fd3cad34687c">
+<img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70">
+<img src="https://images.unsplash.com/photo-1493238792000-8113da705763">
+<img src="https://images.unsplash.com/photo-1542362567-b07e54358753">
+
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<div class="container reviews">
+
+<h2>Отзывы клиентов</h2>
+
+<div class="review">
+<b>Владислав Гаврилин</b>
+<p>Помогли решить проблему с дверью автомобиля 2 января. Быстро разобрались и всё починили.</p>
+</div>
+
+<div class="review">
+<b>Константин Сухов</b>
+<p>Отличный сервис. Диагностика и ремонт на уровне.</p>
+</div>
+
+<div class="review">
+<b>Дмитрий А</b>
+<p>Сделали ремонт быстро и качественно. Цена адекватная.</p>
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<div class="container contacts">
+
+<h2>Контакты</h2>
+
+<p>📍 Санкт-Петербург<br>Костромской просп., 62</p>
+
+<p>📞 +7 (981) 150-17-17</p>
+
+<p>Ежедневно 09:00 – 20:00</p>
+
+<div class="map">
+
+<iframe src="https://yandex.ru/map-widget/v1/?ll=30.313497%2C59.998214&mode=search&oid=15776196576&ol=biz&z=16"></iframe>
+
+</div>
+
+</div>
+
+</section>
+
+<div class="floating">
+<a class="float-btn phone" href="tel:+79811501717">📞</a>
+<a class="float-btn tg" href="https://t.me/+79811501717">✈</a>
+</div>
+
+<footer>
+DVA Auto © 2026
+</footer>
+
+<script>
+
+const observer = new IntersectionObserver(entries=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting){
+entry.target.classList.add("show")
+}
+})
+})
+
+document.querySelectorAll(".card,.adv").forEach(el=>{
+observer.observe(el)
+})
+
+</script>
+
+</body>
+</html>
