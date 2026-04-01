@@ -94,16 +94,69 @@ header {
 section { padding: 100px 0; }
 h2 { text-align: center; font-size: 40px; margin-bottom: 60px; }
 
-/* Услуги и преимущества */
-.services, .advantages {
+/* Услуги - ОБНОВЛЕНО ПОД ФОНОВЫЕ КАРТИНКИ */
+.services {
     display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 30px;
 }
 
-.services { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
-.advantages { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+.card {
+    position: relative;
+    border-radius: 14px;
+    text-align: center;
+    transition: 0.4s;
+    opacity: 0;
+    transform: translateY(40px);
+    overflow: hidden;
+    min-height: 280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 30px 20px;
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
+}
 
-.card, .adv {
+/* Затемняющий слой поверх картинки для читаемости текста */
+.card::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.9) 10%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0.1) 100%);
+    z-index: -1;
+    transition: 0.4s;
+}
+
+.card.show { opacity: 1; transform: translateY(0); }
+
+/* Эффект при наведении на карточку услуги */
+.card:hover { transform: translateY(-8px); }
+.card:hover::before {
+    background: linear-gradient(to top, rgba(0,0,0,0.95) 10%, rgba(255,90,0,0.4) 100%);
+}
+
+.card h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.card p {
+    font-size: 14px;
+    color: #ccc;
+    line-height: 1.4;
+}
+
+.price { margin-top: 15px; color: #ff5a00; font-weight: 700; font-size: 18px; }
+
+/* Преимущества */
+.advantages {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+.adv {
     background: #141414;
     padding: 35px;
     border-radius: 14px;
@@ -112,21 +165,16 @@ h2 { text-align: center; font-size: 40px; margin-bottom: 60px; }
     opacity: 0;
     transform: translateY(40px);
 }
+.adv.show { opacity: 1; transform: translateY(0); }
 
-.card.show, .adv.show { opacity: 1; transform: translateY(0); }
-.card:hover { transform: translateY(-8px); background: #1b1b1b; }
-
-.icon { font-size: 40px; margin-bottom: 15px; }
-.price { margin-top: 12px; color: #ff5a00; font-weight: 600; }
-
-/* Галерея */
+/* Галереи (общие стили для фото и видео) */
 .gallery-wrapper {
     position: relative;
     display: flex;
     align-items: center;
 }
 
-.gallery-slider {
+.gallery-slider, .video-slider {
     overflow-x: auto;
     scroll-behavior: smooth;
     white-space: nowrap;
@@ -134,7 +182,7 @@ h2 { text-align: center; font-size: 40px; margin-bottom: 60px; }
     -ms-overflow-style: none;
     scrollbar-width: none;
 }
-.gallery-slider::-webkit-scrollbar {
+.gallery-slider::-webkit-scrollbar, .video-slider::-webkit-scrollbar {
     display: none;
 }
 
@@ -143,6 +191,7 @@ h2 { text-align: center; font-size: 40px; margin-bottom: 60px; }
     gap: 20px;
 }
 
+/* Стили для фото */
 .gallery-track img {
     width: 300px;
     height: 200px;
@@ -151,8 +200,17 @@ h2 { text-align: center; font-size: 40px; margin-bottom: 60px; }
     transition: 0.3s;
     flex-shrink: 0;
 }
-
 .gallery-track img:hover { transform: scale(1.03); }
+
+/* Стили для видео */
+.video-track video {
+    width: 250px; /* Вертикальный формат */
+    height: 440px;
+    object-fit: cover;
+    border-radius: 10px;
+    flex-shrink: 0;
+    background: #111;
+}
 
 .slider-btn {
     position: absolute;
@@ -171,8 +229,8 @@ h2 { text-align: center; font-size: 40px; margin-bottom: 60px; }
 }
 
 .slider-btn:hover { background: #ff7b2d; }
-.btn-prev { left: -20px; }
-.btn-next { right: -20px; }
+.btn-prev, .video-btn-prev { left: -20px; }
+.btn-next, .video-btn-next { right: -20px; }
 
 /* Отзывы */
 .reviews { max-width: 800px; margin: auto; }
@@ -242,10 +300,10 @@ iframe { width: 100%; height: 350px; border: 0; }
 
 footer { text-align: center; padding: 35px; color: #777; border-top: 1px solid #222; }
 
-/* Адаптив для галереи на телефонах */
+/* Адаптив для галерей на телефонах */
 @media (max-width: 768px) {
-    .btn-prev { left: -5px; }
-    .btn-next { right: -5px; }
+    .btn-prev, .video-btn-prev { left: -5px; }
+    .btn-next, .video-btn-next { right: -5px; }
 }
 </style>
 </head>
@@ -274,55 +332,61 @@ footer { text-align: center; padding: 35px; color: #777; border-top: 1px solid #
     <div class="container">
         <h2>Наши услуги</h2>
         <div class="services">
-            <div class="card">
-                <div class="icon">🖥️</div>
+            
+            <div class="card" style="background-image: url('https://images.unsplash.com/photo-1555627077-e6f76db78e1b?w=600&h=400&fit=crop');">
                 <h3>Компьютерная диагностика</h3>
                 <p>Проверка всех электронных систем автомобиля</p>
                 <div class="price">2000 ₽</div>
             </div>
-            <div class="card">
-                <div class="icon">🔧</div>
+
+            <div class="card" style="background-image: url('https://images.unsplash.com/photo-1625047509168-a71c66946a2c?w=600&h=400&fit=crop');">
                 <h3>Техническое обслуживание</h3>
                 <p>Замена масла, фильтров и подбор расходников</p>
                 <div class="price">2500 ₽</div>
             </div>
-            <div class="card">
-                <div class="icon">🚗</div>
+
+            <div class="card" style="background-image: url('https://images.unsplash.com/photo-1632823462996-ea06f71d50c7?w=600&h=400&fit=crop');">
                 <h3>Ремонт подвески</h3>
                 <p>Передняя и задняя подвеска</p>
                 <div class="price">от 3500 ₽</div>
             </div>
-            <div class="card">
-                <div class="icon">🛑</div>
+
+            <div class="card" style="background-image: url('https://images.unsplash.com/photo-1493238792000-8113da705763?w=600&h=400&fit=crop');">
                 <h3>Тормозная система</h3>
                 <p>Замена колодок и тормозных дисков</p>
                 <div class="price">3500 ₽ / ось</div>
             </div>
 
-            <div class="card">
-                <div class="icon">⚡</div>
+            <div class="card" style="background-image: url('https://images.unsplash.com/photo-1563212048-8df0c7c7f3b4?w=600&h=400&fit=crop');">
                 <h3>Автоэлектрика</h3>
                 <p>Комплексная диагностика и ремонт электрооборудования</p>
                 <div class="price">5000 ₽</div>
             </div>
-            <div class="card">
-                <div class="icon">⚙️</div>
+
+            <div class="card" style="background-image: url('https://images.unsplash.com/photo-1503328427499-d92d1fa3afce?w=600&h=400&fit=crop');">
                 <h3>Установка свап-комплектов</h3>
                 <p>Профессиональная замена агрегатов и узлов</p>
                 <div class="price">5000 ₽</div>
             </div>
-            <div class="card">
-                <div class="icon">💎</div>
+
+            <div class="card" style="background-image: url('https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=600&h=400&fit=crop');">
                 <h3>Восстановление и реставрация</h3>
                 <p>Возвращаем автомобилям заводское состояние</p>
                 <div class="price">5000 ₽</div>
             </div>
-            <div class="card">
-                <div class="icon">🚘</div>
+
+            <div class="card" style="background-image: url('https://images.unsplash.com/photo-1616423640778-28d1b53229bd?w=600&h=400&fit=crop');">
                 <h3>Ремонт Мерседесов</h3>
                 <p>Специализированное обслуживание автомобилей Mercedes-Benz</p>
                 <div class="price">5000 ₽</div>
             </div>
+
+            <div class="card" style="background-image: url('https://images.unsplash.com/photo-1611075654521-177990ffb752?w=600&h=400&fit=crop');">
+                <h3>Ламинация карбона</h3>
+                <p>Декоративная и защитная отделка углеволокном</p>
+                <div class="price">5000 ₽</div>
+            </div>
+
         </div>
     </div>
 </section>
@@ -342,34 +406,53 @@ footer { text-align: center; padding: 35px; color: #777; border-top: 1px solid #
 
 <section>
     <div class="container">
-        <h2>Галерея сервиса</h2>
+        <h2>Фото сервиса</h2>
         <div class="gallery-wrapper">
             <button class="slider-btn btn-prev">❮</button>
             <div class="gallery-slider">
                 <div class="gallery-track">
-    <img src="images/service1.jpg" alt="Фото сервиса 1">
-    <img src="images/service2.jpg" alt="Фото сервиса 2">
-    <img src="images/service3.jpg" alt="Фото сервиса 3">
-    <img src="images/service4.jpg" alt="Фото сервиса 4">
-    <img src="images/service5.jpg" alt="Фото сервиса 5">
-    <img src="images/service6.jpg" alt="Фото сервиса 6">
-    <img src="images/service7.jpg" alt="Фото сервиса 7">
-    <img src="images/service8.jpg" alt="Фото сервиса 8">
-    <img src="images/service9.jpg" alt="Фото сервиса 9">
-    <img src="images/service10.jpg" alt="Фото сервиса 10">
-    <img src="images/service11.jpg" alt="Фото сервиса 11">
-    <img src="images/service12.jpg" alt="Фото сервиса 12">
-    <img src="images/service13.jpg" alt="Фото сервиса 13">
-    <img src="images/service14.jpg" alt="Фото сервиса 14">
-    <img src="images/service15.jpg" alt="Фото сервиса 15">
-    <img src="images/service16.jpg" alt="Фото сервиса 16">
-    <img src="images/service17.jpg" alt="Фото сервиса 17">
-    <img src="images/service18.jpg" alt="Фото сервиса 18">
-    <img src="images/service19.jpg" alt="Фото сервиса 19">
-    <img src="images/service20.jpg" alt="Фото сервиса 20">
-</div>
+                    <img src="images/service1.jpg" alt="Фото сервиса 1">
+                    <img src="images/service2.jpg" alt="Фото сервиса 2">
+                    <img src="images/service3.jpg" alt="Фото сервиса 3">
+                    <img src="images/service4.jpg" alt="Фото сервиса 4">
+                    <img src="images/service5.jpg" alt="Фото сервиса 5">
+                    <img src="images/service6.jpg" alt="Фото сервиса 6">
+                    <img src="images/service7.jpg" alt="Фото сервиса 7">
+                    <img src="images/service8.jpg" alt="Фото сервиса 8">
+                    <img src="images/service9.jpg" alt="Фото сервиса 9">
+                    <img src="images/service10.jpg" alt="Фото сервиса 10">
+                    <img src="images/service11.jpg" alt="Фото сервиса 11">
+                    <img src="images/service12.jpg" alt="Фото сервиса 12">
+                    <img src="images/service13.jpg" alt="Фото сервиса 13">
+                    <img src="images/service14.jpg" alt="Фото сервиса 14">
+                    <img src="images/service15.jpg" alt="Фото сервиса 15">
+                    <img src="images/service16.jpg" alt="Фото сервиса 16">
+                    <img src="images/service17.jpg" alt="Фото сервиса 17">
+                    <img src="images/service18.jpg" alt="Фото сервиса 18">
+                    <img src="images/service19.jpg" alt="Фото сервиса 19">
+                    <img src="images/service20.jpg" alt="Фото сервиса 20">
+                </div>
             </div>
             <button class="slider-btn btn-next">❯</button>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <h2>Наши работы в видео</h2>
+        <div class="gallery-wrapper">
+            <button class="slider-btn video-btn-prev">❮</button>
+            <div class="video-slider">
+                <div class="gallery-track video-track">
+                    <video src="https://www.w3schools.com/html/mov_bbb.mp4" controls preload="metadata"></video>
+                    <video src="https://www.w3schools.com/html/mov_bbb.mp4" controls preload="metadata"></video>
+                    <video src="https://www.w3schools.com/html/mov_bbb.mp4" controls preload="metadata"></video>
+                    <video src="https://www.w3schools.com/html/mov_bbb.mp4" controls preload="metadata"></video>
+                    <video src="https://www.w3schools.com/html/mov_bbb.mp4" controls preload="metadata"></video>
+                </div>
+            </div>
+            <button class="slider-btn video-btn-next">❯</button>
         </div>
     </div>
 </section>
@@ -483,11 +566,10 @@ footer { text-align: center; padding: 35px; color: #777; border-top: 1px solid #
 
     setInterval(moveReviews, 3500); 
 
-    // Горизонтальная галерея
+    // Логика горизонтальной ФОТО галереи
     const gallerySlider = document.querySelector('.gallery-slider');
     const btnPrev = document.querySelector('.btn-prev');
     const btnNext = document.querySelector('.btn-next');
-
     const scrollAmount = 320; 
 
     btnNext.addEventListener('click', () => {
@@ -496,6 +578,20 @@ footer { text-align: center; padding: 35px; color: #777; border-top: 1px solid #
 
     btnPrev.addEventListener('click', () => {
         gallerySlider.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+    });
+
+    // Логика горизонтальной ВИДЕО галереи
+    const videoSlider = document.querySelector('.video-slider');
+    const videoBtnPrev = document.querySelector('.video-btn-prev');
+    const videoBtnNext = document.querySelector('.video-btn-next');
+    const videoScrollAmount = 270; // Чуть меньше, так как видео вертикальные и уже фото
+
+    videoBtnNext.addEventListener('click', () => {
+        videoSlider.scrollBy({ left: videoScrollAmount, behavior: 'smooth' });
+    });
+
+    videoBtnPrev.addEventListener('click', () => {
+        videoSlider.scrollBy({ left: -videoScrollAmount, behavior: 'smooth' });
     });
 </script>
 
