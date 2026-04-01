@@ -355,10 +355,10 @@ border-top:1px solid #222;
 
 <div class="gallery">
 
-<img src="https://images.unsplash.com/photo-1511919884226-fd3cad34687c">
-<img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70">
-<img src="https://images.unsplash.com/photo-1493238792000-8113da705763">
-<img src="https://images.unsplash.com/photo-1542362567-b07e54358753">
+<img src="images/service1.jpg">
+<img src="images/service2.jpg">
+<img src="images/service3.jpg">
+<img src="images/service4.jpg">
 
 </div>
 
@@ -372,19 +372,56 @@ border-top:1px solid #222;
 
 <h2>Отзывы клиентов</h2>
 
-<div class="review">
+<div class="review-slider">
+
+<div class="review active">
+<img class="avatar" src="https://i.pravatar.cc/80?img=1">
+<div>
 <b>Владислав Гаврилин</b>
 <p>Помогли решить проблему с дверью автомобиля 2 января. Быстро разобрались и всё починили.</p>
 </div>
-
-<div class="review">
-<b>Константин Сухов</b>
-<p>Отличный сервис. Диагностика и ремонт на уровне.</p>
 </div>
 
 <div class="review">
+<img class="avatar" src="https://i.pravatar.cc/80?img=2">
+<div>
+<b>Константин Сухов</b>
+<p>Отличный сервис. Диагностика и ремонт на уровне.</p>
+</div>
+</div>
+
+<div class="review">
+<img class="avatar" src="https://i.pravatar.cc/80?img=3">
+<div>
 <b>Дмитрий А</b>
 <p>Сделали ремонт быстро и качественно. Цена адекватная.</p>
+</div>
+</div>
+
+<div class="review">
+<img class="avatar" src="https://i.pravatar.cc/80?img=4">
+<div>
+<b>Константин Чекан</b>
+<p>Отличное место, парни знают что делают, быстро и качественно нашли проблему.</p>
+</div>
+</div>
+
+<div class="review">
+<img class="avatar" src="https://i.pravatar.cc/80?img=5">
+<div>
+<b>Ирина Маркова</b>
+<p>Великолепный автосервис. Всё объясняют, работают на совесть. Рекомендую!</p>
+</div>
+</div>
+
+<div class="review">
+<img class="avatar" src="https://i.pravatar.cc/80?img=6">
+<div>
+<b>Виктория Н.</b>
+<p>Грамотные специалисты, современное оборудование и честные цены.</p>
+</div>
+</div>
+
 </div>
 
 </div>
@@ -435,7 +472,21 @@ entry.target.classList.add("show")
 document.querySelectorAll(".card,.adv").forEach(el=>{
 observer.observe(el)
 })
+const reviews=document.querySelectorAll(".review")
 
+let index=0
+
+setInterval(()=>{
+
+reviews[index].classList.remove("active")
+
+index=(index+1)%reviews.length
+
+reviews[index].classList.add("active")
+
+},4000)
+
+  
 </script>
 
 </body>
