@@ -453,7 +453,7 @@ footer { text-align: center; padding: 35px; color: #777; border-top: 1px solid #
             <button class="slider-btn video-btn-prev">❮</button>
             <div class="video-slider">
                 <div class="gallery-track video-track">
-                    <video src="video/vid1.mp4" controls preload="metadata"></video>
+                    <video src="video/vid1.mp4" preload="metadata" muted playsinline poster="images/preview1.jpg"></video>
                     <video src="video/vid2.mp4" controls preload="metadata"></video>
                     <video src="video/vid3.mp4" controls preload="metadata"></video>
                     <video src="video/vid5.mp4" controls preload="metadata"></video>
@@ -564,51 +564,64 @@ footer { text-align: center; padding: 35px; color: #777; border-top: 1px solid #
 
     // Вертикальный слайдер отзывов
     const reviewTrack = document.querySelector('.review-track');
+
     const moveReviews = () => {
         const firstReview = reviewTrack.children[0];
-        const heightToMove = firstReview.offsetHeight + 20; 
-        
-        reviewTrack.style.transform = `translateY(-${heightToMove}px)`;
-        
+        const heightToMove = firstReview.offsetHeight + 20;
+
+        reviewTrack.style.transform = translateY(-${heightToMove}px);
+
         setTimeout(() => {
             reviewTrack.style.transition = 'none';
-            reviewTrack.appendChild(firstReview); 
+            reviewTrack.appendChild(firstReview);
             reviewTrack.style.transform = 'translateY(0)';
-            
+
             setTimeout(() => {
                 reviewTrack.style.transition = 'transform 0.8s ease-in-out';
             }, 50);
-        }, 800); 
+        }, 800);
     };
 
-    setInterval(moveReviews, 3500); 
+    setInterval(moveReviews, 3500);
 
-    // Логика горизонтальной ФОТО галереи
+    // ФОТО галерея
     const gallerySlider = document.querySelector('.gallery-slider');
     const btnPrev = document.querySelector('.btn-prev');
     const btnNext = document.querySelector('.btn-next');
-    const scrollAmount = 320; 
+    const scrollAmount = 320;
 
-    btnNext.addEventListener('click', () => {
-        gallerySlider.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-    });
+    if (btnNext && btnPrev && gallerySlider) {
+        btnNext.addEventListener('click', () => {
+            gallerySlider.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        });
 
-    btnPrev.addEventListener('click', () => {
-        gallerySlider.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-    });
+        btnPrev.addEventListener('click', () => {
+            gallerySlider.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+        });
+    }
 
-    // Логика горизонтальной ВИДЕО галереи
+    // ВИДЕО галерея
     const videoSlider = document.querySelector('.video-slider');
     const videoBtnPrev = document.querySelector('.video-btn-prev');
     const videoBtnNext = document.querySelector('.video-btn-next');
-    const videoScrollAmount = 270; // Чуть меньше, так как видео вертикальные и уже фото
+    const videoScrollAmount = 270;
 
-    videoBtnNext.addEventListener('click', () => {
-        videoSlider.scrollBy({ left: videoScrollAmount, behavior: 'smooth' });
-    });
+    if (videoBtnNext && videoBtnPrev && videoSlider) {
+        videoBtnNext.addEventListener('click', () => {
+            videoSlider.scrollBy({ left: videoScrollAmount, behavior: 'smooth' });
+        });
 
-    videoBtnPrev.addEventListener('click', () => {
-        videoSlider.scrollBy({ left: -videoScrollAmount, behavior: 'smooth' });
+        videoBtnPrev.addEventListener('click', () => {
+            videoSlider.scrollBy({ left: -videoScrollAmount, behavior: 'smooth' });
+        });
+    }
+
+    // 🔥 ПРИНУДИТЕЛЬНАЯ ПОДГРУЗКА ВИДЕО (фикс превью)
+    document.querySelectorAll('.video-track video').forEach(video => {
+        video.setAttribute('preload', 'metadata');
+        video.setAttribute('muted', '');
+        video.setAttribute('playsinline', '');
+        video.load();
     });
 </script>
 
